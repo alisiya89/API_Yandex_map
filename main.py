@@ -1,8 +1,8 @@
 import sys
 import requests
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton
+from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import Qt
 
 
@@ -14,6 +14,25 @@ class Window(QMainWindow):
     def initUI(self):
         self.setGeometry(700, 100, 700, 550)
         self.setWindowTitle('Работа с картой')
+
+        self.sheet_scheme = QPushButton('', self)
+        self.sheet_scheme.resize(30, 30)
+        self.sheet_scheme.move(50, 450)
+        self.sheet_scheme.setIcon(QIcon('mapicon.png'))
+
+        self.sheet_spn = QPushButton('', self)
+        self.sheet_spn.resize(30, 30)
+        self.sheet_spn.move(80, 450)
+        self.sheet_spn.setIcon(QIcon('spnicon.png'))
+
+        self.sheet_hybrid = QPushButton('', self)
+        self.sheet_hybrid.resize(30, 30)
+        self.sheet_hybrid.move(110, 450)
+        self.sheet_hybrid.setIcon(QIcon('hybridicon.png'))
+
+        self.sheet_scheme.clicked.connect(self.scheme)
+        self.sheet_spn.clicked.connect(self.spn)
+        self.sheet_hybrid.clicked.connect(self.hybrid)
 
         self.map = QLabel(self)
         self.map.move(50, 30)
