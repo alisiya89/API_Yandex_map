@@ -28,6 +28,18 @@ class Window(QMainWindow):
 
         self.refresh_map()
 
+    def hybrid(self):
+        self.map_l = 'sat,skl'
+        self.refresh_map()
+
+    def spn(self):
+        self.map_l = 'sat'
+        self.refresh_map()
+
+    def scheme(self):
+        self.map_l = 'map'
+        self.refresh_map()
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Up:
            self.map_ll[1] += 4.4
