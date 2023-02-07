@@ -28,6 +28,17 @@ class Window(QMainWindow):
 
         self.refresh_map()
 
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Up:
+           self.map_ll[1] += 4.4
+        elif event.key() == Qt.Key_Right:
+           self.map_ll[0] += 4.4
+        elif event.key() == Qt.Key_Down:
+           self.map_ll[1] -= 4.4
+        elif event.key() == Qt.Key_Left:
+           self.map_ll[0] -= 4.4
+        self.refresh_map()
+
     def refresh_map(self):
         map_params = {
             "ll": ','.join(map(str, self.map_ll)),
@@ -41,18 +52,10 @@ class Window(QMainWindow):
         pixmap.load('map.png')
         self.map.setPixmap(pixmap)
 
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_PageDown:
-            if self.map_zoom < 15:
-                self.map_zoom += 1
-        if event.key() == Qt.Key_PageUp:
-            if self.map_zoom > 1:
-                self.map_zoom -= 1
-        print(self.map_zoom)
-        self.refresh_map()
 
 def except_hook(cls, exception, traceback):
     sys.__excepthook__(cls, exception, traceback)
+
 
 if __name__ == '__main__':
     sys.excepthook = except_hook
